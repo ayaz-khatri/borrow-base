@@ -7,6 +7,10 @@
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
+DROP DATABASE IF EXISTS `borrow_base`;          -- Removes database if already exists
+CREATE DATABASE `borrow_base`;                  -- creates new database
+USE `borrow_base`;                              -- selects the database for further actions
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -23,34 +27,29 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
--- --
--- -- Table structure for table `categories`
--- --
--- DROP TABLE IF EXISTS `categories`;
--- CREATE TABLE `categories` (
---   `id` int(11) NOT NULL,
---   `name` varchar(255) NOT NULL,
---   `image` varchar(255) DEFAULT NULL,
---   `status` tinyint(1) DEFAULT 1,
---   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
---   `updated_at` datetime NOT NULL DEFAULT current_timestamp()
--- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+--
+-- Table structure for table `categories`
+--
+DROP TABLE IF EXISTS `categories`;
+CREATE TABLE `categories` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT 1,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --
--- -- Dumping data for table `categories`
--- --
+--
+-- Dumping data for table `categories`
+--
 
--- INSERT INTO `categories` (`id`, `name`, `image`, `status`, `created_at`, `updated_at`) VALUES
--- (1, 'Burgers', NULL, 1, '2023-10-31 11:40:26', '2023-10-31 11:40:26'),
--- (2, 'Pizzas', NULL, 1, '2023-10-31 11:40:26', '2023-10-31 11:40:26'),
--- (3, 'Dairy Products', NULL, 1, '2023-10-31 11:40:26', '2023-10-31 11:40:26'),
--- (4, 'Meat and Poultry', NULL, 1, '2023-10-31 11:40:26', '2023-10-31 11:40:26'),
--- (5, 'Seafood', NULL, 1, '2023-10-31 11:40:26', '2023-10-31 11:40:26'),
--- (6, 'Grains and Cereals', NULL, 1, '2023-10-31 11:40:26', '2023-10-31 11:40:26'),
--- (7, 'Bakery and Pastries', NULL, 1, '2023-10-31 11:40:26', '2023-10-31 11:40:26'),
--- (8, 'Beverages', NULL, 1, '2023-10-31 11:40:26', '2023-10-31 11:40:26'),
--- (9, 'Snacks', NULL, 1, '2023-10-31 11:40:26', '2023-10-31 11:40:26'),
--- (10, 'Desserts', NULL, 1, '2023-10-31 11:40:26', '2023-10-31 11:40:26');
+INSERT INTO `categories` (`id`, `name`, `image`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Laptops', NULL, 1, NOW(), NOW()),
+(2, 'Books', NULL, 1, NOW(), NOW()),
+(3, 'Tools', NULL, 1, NOW(), NOW()),
+(4, 'Accessories', NULL, 1, NOW(), NOW()),
+(5, 'Projectors', NULL, 1, NOW(), NOW());
 
 -- --------------------------------------------------------
 
@@ -141,8 +140,8 @@ VALUES
 --
 -- Indexes for table `categories`
 --
--- ALTER TABLE `categories`
---   ADD PRIMARY KEY (`id`);
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -157,14 +156,14 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for table `categories`
 --
--- ALTER TABLE `categories`
---   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+ALTER TABLE `categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

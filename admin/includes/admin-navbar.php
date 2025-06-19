@@ -5,6 +5,11 @@
 ?>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark box">
   <div class="container-fluid mx-4 my-1">
+    <button class="btn float-end mt" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button">
+        <span data-bs-toggle="tooltip" title="Menu" data-bs-placement="bottom" class="h4">
+            <i class="fa-solid fa-bars text-light" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"></i>
+          </span>
+    </button>
     <a class="navbar-brand fw-bold" href="../../index.php">
       <img src="../../images/logo.png" style="width: 32px;" alt="logo" class="me-2">
       <?php
