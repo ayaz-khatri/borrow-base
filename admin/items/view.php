@@ -10,7 +10,9 @@ include('../includes/header.php');
 $id = $_GET['id'];
         
 $paramList = [$id];
-$sql = "SELECT * FROM $plural WHERE id = ? AND role != 'a'";
+$sql = "SELECT i.*, c.name AS category FROM $plural i
+        INNER JOIN categories c ON c.id = i.category_id
+        WHERE i.id = ?";
 $result = $obj->executeSQL($sql, $paramList, true);
 
 if($result == '' || empty($result))
@@ -66,6 +68,7 @@ else
                     <div class="row px-2">
                         <div class="col-6">
                             <h5 class="card-title fw-bold"><?php echo $row['name']; ?></h5>
+                            <span class="text-muted fw-bold"><?php echo $row['category']; ?></span>
                         </div>
                         <div class="col-6 text-end">
                             <div class="btn-group" role="group" aria-label="Basic outlined example">
@@ -83,15 +86,14 @@ else
                                     <i class="fa fa-lock" data-bs-toggle="tooltip" data-bs-placement="top" title="Block"></i>
                                     </a>  
                                 <?php  } ?>
-
                             </div>
                         </div>
                     </div>
                     <hr>
                     <table class="table table-borderless">
                         <tr>
-                            <td class="fw-bold">Email:</td>
-                            <td><?php echo $row['email'] ?></td>
+                            <td class="fw-bold">Quantity:</td>
+                            <td class="fw-bold"><?php echo $row['quantity']; ?></td>
                         </tr>
                         <tr>
                             <?php
@@ -109,47 +111,14 @@ else
                             <td class="<?php echo $statusClass; ?> fw-bold"><?php echo $status; ?></td>
                         </tr>
                     </table>
-                    
                     <div class="row">
                         <hr>
                         <div class="col">
-                            <small class="text-muted">Date of Birth:</small>
-                            <p><?php echo ($row['dob'] != "") ? $row['dob'] : "--"  ?></p>
+                            <small class="text-muted">Description:</small>
+                            <p><?php echo $row['description']  ?></p>
                         </div>
-                        <div class="col">
-                            <small class="text-muted">Phone:</small>
-                            <p><?php echo ($row['phone'] != "") ? $row['phone'] : "--"  ?></p>
-
-                        </div>
-                        <div class="col">
-                            <small class="text-muted">Gender:</small>
-                            <?php
-                                $gender = "--"; 
-                                if ($row['gender'] == "m") 
-                                {
-                                    $gender =  "Male";
-                                } 
-                                elseif($row['gender'] == "f")
-                                {
-                                    $gender =  "Female";
-                                }
-                                elseif($row['gender'] == "o")
-                                {
-                                    $gender =  "Other";
-                                }
-                            ?>
-                            <p><?php echo $gender; ?></p>
-                        </div>
-                        <hr>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <small class="text-muted">Address:</small>
-                            <p><?php echo ($row['address'] != "") ? $row['address'] : "--"  ?></p>
-
-                        </div>
-                        <hr>
-                    </div>
+                    <hr>
                     <div class="row">
                         <div class="col">
                             <small class="text-muted">Created At:</small>

@@ -28,8 +28,8 @@
                 </a>
             </li>
             <li class="nav-item fw-bold">
-                <a href="#" class="nav-link text-dark sidebarLink">
-                    <i class="fa-solid fa-layer-group" data-bs-toggle="tooltip" title="Products" style="width: 15px;"></i><span class="ms-3 d-none d-md-inline">Products</span>
+                <a href="../items/index.php" class="nav-link text-dark sidebarLink">
+                    <i class="fa-solid fa-basket-shopping" data-bs-toggle="tooltip" title="Products" style="width: 15px;"></i><span class="ms-3 d-none d-md-inline">Items</span>
                 </a>
             </li>
             <li class="nav-item fw-bold">

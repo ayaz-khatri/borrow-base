@@ -65,7 +65,7 @@ else
                 <div class="card-body">
                     <div class="row px-2">
                         <div class="col-6">
-                            <h5 class="card-title mb-4 fw-bold"><?php echo $row['name']; ?></h5>
+                            <h5 class="card-title fw-bold"><?php echo $row['name']; ?></h5>
                         </div>
                         <div class="col-6 text-end">
                             <div class="btn-group" role="group" aria-label="Basic outlined example">
@@ -87,6 +87,7 @@ else
                             </div>
                         </div>
                     </div>
+                    <hr>
                     <table class="table table-borderless">
                         <tr>
                             <?php
@@ -104,6 +105,7 @@ else
                             <td class="<?php echo $statusClass; ?> fw-bold"><?php echo $status; ?></td>
                         </tr>
                     </table>
+                    <hr>
                     <div class="row">
                         <div class="col">
                             <small class="text-muted">Created At:</small>

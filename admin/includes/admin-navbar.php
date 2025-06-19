@@ -2,6 +2,7 @@
   include('../../includes/config.php'); // Website's configuration
   include('../../logics/init-session.php'); // start session if it's not already started
   $current_page = basename($_SERVER['PHP_SELF']);
+  $folder = basename(dirname($_SERVER['PHP_SELF']));
 ?>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark box">
   <div class="container-fluid mx-4 my-1">
@@ -23,7 +24,16 @@
       <ul class="navbar-nav w-100">
         <span class="border-end me-2"></span>
         <li class="nav-item mt-2 mb-1">
-          <a class="nav-link <?php echo ($current_page == 'index.php') ? 'active fw-bold' : '' ?>" href="../home/index.php">Home</a>
+          <a class="nav-link <?php echo ($folder == 'home') ? 'active fw-bold' : '' ?>" href="../home/index.php">Home</a>
+        </li>
+         <li class="nav-item mt-2 mb-1">
+          <a class="nav-link <?php echo ($folder == 'users') ? 'active fw-bold' : '' ?>" href="../users/index.php">Users</a>
+        </li>
+         <li class="nav-item mt-2 mb-1">
+          <a class="nav-link <?php echo ($folder == 'categories') ? 'active fw-bold' : '' ?>" href="../categories/index.php">Categories</a>
+        </li>
+         <li class="nav-item mt-2 mb-1">
+          <a class="nav-link <?php echo ($folder == 'items') ? 'active fw-bold' : '' ?>" href="../items/index.php">Items</a>
         </li>
         <?php
           if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) { ?>

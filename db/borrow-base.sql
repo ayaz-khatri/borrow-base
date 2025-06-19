@@ -15,24 +15,13 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
 -- Database: `borrow_base`
 --
 
--- --------------------------------------------------------
-
---
--- Table structure for table `categories`
---
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
-  `id` int(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name` varchar(255) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `status` tinyint(1) DEFAULT 1,
@@ -40,25 +29,9 @@ CREATE TABLE `categories` (
   `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `categories`
---
-
-INSERT INTO `categories` (`id`, `name`, `image`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Laptops', NULL, 1, NOW(), NOW()),
-(2, 'Books', NULL, 1, NOW(), NOW()),
-(3, 'Tools', NULL, 1, NOW(), NOW()),
-(4, 'Accessories', NULL, 1, NOW(), NOW()),
-(5, 'Projectors', NULL, 1, NOW(), NOW());
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -73,9 +46,31 @@ CREATE TABLE `users` (
   `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `users`
---
+DROP TABLE IF EXISTS `items`;
+CREATE TABLE `items` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
+  FOREIGN KEY (`category_id`) REFERENCES `categories`(`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+-- --------------------------------------------------------
+
+INSERT INTO `categories` (`id`, `name`, `image`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Laptops', NULL, 1, NOW(), NOW()),
+(2, 'Books', NULL, 1, NOW(), NOW()),
+(3, 'Tools', NULL, 1, NOW(), NOW()),
+(4, 'Accessories', NULL, 1, NOW(), NOW()),
+(5, 'Projectors', NULL, 1, NOW(), NOW());
+
+-- --------------------------------------------------------
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `gender`, `dob`, `phone`, `address`, `role`, `status`, `created_at`, `updated_at`)
 VALUES
@@ -131,41 +126,24 @@ VALUES
 ('50', 'Aria Cox', 'aria.cox50@example.com', '$2y$10$6KiS6xRkfjHMUKCaaJ0fa.Ch9RFXB9ubn/1jDYjHLq564EfjKZNRm', 'f', '1996-03-18', '3334445555', '303 Mercury Ln, Cooperation', 'u', 1, NOW(), NOW()),
 ('51', 'Gabriel Sanders', 'gabriel.sanders51@example.com', '$2y$10$6KiS6xRkfjHMUKCaaJ0fa.Ch9RFXB9ubn/1jDYjHLq564EfjKZNRm', 'm', '1990-08-27', '5556667777', '101 Sunflower St, Coexistence', 'u', 1, NOW(), NOW());
 
+-- --------------------------------------------------------
+
+INSERT INTO `items` (`name`, `description`, `quantity`, `category_id`, `image`, `status`, `created_at`, `updated_at`) VALUES
+('Dell Inspiron 15', '15-inch laptop with Intel i5, 8GB RAM, 256GB SSD.', 5, 1, NULL, 1, NOW(), NOW()),
+('HP Pavilion', 'Lightweight laptop with AMD Ryzen 5, 16GB RAM.', 4, 1, NULL, 1, NOW(), NOW()),
+('The Alchemist', 'Book by Paulo Coelho on dreams and destiny.', 10, 2, NULL, 1, NOW(), NOW()),
+('Multimeter', 'Digital multimeter for basic electrical measurements.', 8, 3, NULL, 1, NOW(), NOW()),
+('Screwdriver Set', 'Set of 6 screwdrivers with magnetic tips.', 12, 3, NULL, 1, NOW(), NOW()),
+('Wireless Mouse', 'Ergonomic wireless mouse with USB receiver.', 15, 4, NULL, 1, NOW(), NOW()),
+('HDMI Cable 5m', 'High-speed HDMI cable for video and audio.', 20, 4, NULL, 1, NOW(), NOW()),
+('Eloquent JavaScript', 'Comprehensive guide to modern JavaScript.', 7, 2, NULL, 1, NOW(), NOW()),
+('Epson Projector', 'Portable projector with 1080p resolution.', 3, 5, NULL, 1, NOW(), NOW()),
+('Logitech Keyboard', 'Slim wireless keyboard for office use.', 6, 4, NULL, 1, NOW(), NOW()),
+('MacBook Air', 'Apple laptop with M1 chip and 256GB SSD.', 3, 1, NULL, 1, NOW(), NOW()),
+('Noise-Canceling Headphones', 'Over-ear headphones with active noise cancellation.', 5, 4, NULL, 1, NOW(), NOW()),
+('Hammer Drill', 'Cordless hammer drill for heavy-duty use.', 4, 3, NULL, 1, NOW(), NOW()),
+('Data Structures Book', 'Academic reference for learning data structures in C++.', 8, 2, NULL, 1, NOW(), NOW()),
+('Ceiling Projector Mount', 'Adjustable ceiling mount for projectors.', 6, 5, NULL, 1, NOW(), NOW());
 
 
---
--- Indexes for dumped tables
---
 
---
--- Indexes for table `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `categories`
---
-ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
